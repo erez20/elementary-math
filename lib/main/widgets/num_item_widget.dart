@@ -11,13 +11,19 @@ class NumItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: model.id,
+    return Material(
       child: InkWell(
         onTap: onTap,
-        child: Text(
-          "${model.value}",
-          style: Styles.lob(size, model.color),
+        child: Hero(
+          //placeholderBuilder: (_, __, ___) => Container(color: Colors.white),
+          tag: model.value,
+          child: Material(
+            type: MaterialType.transparency,
+            child: Text(
+              "${model.value}",
+              style: Styles.lob(size, model.color),
+            ),
+          ),
         ),
       ),
     );

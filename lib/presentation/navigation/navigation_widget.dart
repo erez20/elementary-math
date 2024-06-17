@@ -15,14 +15,14 @@ class NavigationWidget extends StatelessWidget {
     return BlocConsumer<NavigationCubit, NavigationState>(
       listener: (contextListener, state) {
         if (state.dest.isNotEmpty) {
-          contextListener.push(state.dest);
+          context.push(state.dest);
         }
       },
       builder: (context, state) {
         return Container(
             color: Colors.red,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
               child: SizedBox.shrink(),
             ));
       },
