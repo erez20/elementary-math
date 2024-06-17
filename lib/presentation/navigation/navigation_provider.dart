@@ -8,9 +8,7 @@ import 'package:karin/presentation/navigation/navigation_cubit.dart';
 import 'navigation_widget.dart';
 
 class NavigationProvider extends StatelessWidget {
-  const NavigationProvider({super.key, required this.child});
-
-  final Widget child;
+  const NavigationProvider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,7 @@ class NavigationProvider extends StatelessWidget {
         return NavigationCubit(appListenerUseCase: getIt<AppListenerUseCase>())
           ..init();
       },
-      child: NavigationWidget(child: child),
+      child: const NavigationWidget(),
     );
   }
 }

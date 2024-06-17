@@ -15,7 +15,12 @@ class NavigationCubit extends Cubit<NavigationState> {
   init() {
     _streamSubscription = appListenerUseCase.execute().listen((event) {
       Fimber.d("event arrived: ${event.name}");
-      if (event != AppEventEnum.init) emit(NavigationState(dest: "/shope"));
+      if (event == AppEventEnum.init) {
+        emit(NavigationState(dest: "/home"));
+      } else {
+        emit(NavigationState(dest: "/shope"));
+      }
+      ;
     });
   }
 

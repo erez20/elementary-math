@@ -1,31 +1,49 @@
-import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:karin/domain/use_cases/column_chosen_use_case.dart';
-import 'package:karin/main/di.dart';
-import 'package:karin/presentation/navigation/navigation_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:karin/domain/models/num_info.dart';
+import 'package:karin/main/widgets/num_item_widget.dart';
+
+import 'home_page_cubit.dart';
+import 'home_page_state.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final String world = "world";
-
     return Scaffold(
       body: SafeArea(
-          child: Center(
-              child: TextButton(
-        onPressed: () {
-          getIt<ColumnChosenUseCase>(param1: 5).execute();
-          //context.push("/shope/$world");
+          child: Column(
+        children: [_xxx(1, 5)],
+      )),
+    );
+  }
+
+  Widget _xxx(int from, int to) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: List<Widget>.generate(
+        to - from + 1,
+        (index) {
+          var num = from + index;
+          final model = NumInfoModel(
+              value: num, color: Colors.blue[num * 100 % 999]!, id: "tag_$num");
+          return homeItem(model);
         },
-        child: Text(
-          "Press Here",
-          style: GoogleFonts.lobster(textStyle: const TextStyle(fontSize: 20)),
-        ),
-      ))),
+      ),
+    );
+  }
+
+  Widget homeItem(NumInfoModel model) {
+    return BlocBuilder<HomePageCubit, HomePageState>(
+      builder: (context, state) {
+        final cubit = context.read<HomePageCubit>();
+        return NumItemWidget(
+          model: model,
+          size: 60,
+          onTap: () => cubit.onItemTapped(model),
+        );
+      },
     );
   }
 }

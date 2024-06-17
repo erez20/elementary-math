@@ -6,28 +6,24 @@ import 'navigation_cubit.dart';
 import 'navigation_state.dart';
 
 class NavigationWidget extends StatelessWidget {
-  final Widget child;
-  const NavigationWidget({super.key, required this.child});
+  const NavigationWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    context.push("/shope/$world");
     return BlocConsumer<NavigationCubit, NavigationState>(
       listener: (contextListener, state) {
         if (state.dest.isNotEmpty) {
-          //contextListener.push(state.dest);
+          contextListener.push(state.dest);
         }
       },
       builder: (context, state) {
-        if (state.dest.isNotEmpty) {
-          context.push(state.dest);
-        }
-
         return Container(
             color: Colors.red,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: child,
+              child: SizedBox.shrink(),
             ));
       },
     );

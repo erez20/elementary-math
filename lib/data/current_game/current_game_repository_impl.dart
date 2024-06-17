@@ -1,13 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:karin/domain/models/num_info.dart';
 import 'package:karin/domain/repositories/current_game_repository.dart';
 
 class CurrentGameRepositoryImpl implements CurrentGameRepository {
-  int _column = 0;
+  NumInfoModel _numInfoModel = NumInfoModel.nullModel();
 
   @override
-  void setCurrColumn(int newColumn) {
-    _column = newColumn;
+  void setNumInfoModel(NumInfoModel model) {
+    _numInfoModel = model;
   }
 
   @override
-  int get column => _column;
+  NumInfoModel get numInfoMode => _numInfoModel;
 }

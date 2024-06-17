@@ -1,4 +1,6 @@
+import 'package:karin/domain/models/num_info.dart';
+
 abstract class CurrentGameRepository {
-  void setCurrColumn(int newNum);
-  int get column;
+  void setNumInfoModel(NumInfoModel model);
+  NumInfoModel get numInfoMode;
 }
